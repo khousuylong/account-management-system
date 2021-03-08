@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  app:
+    environment:
+      - TEST_MODE=true
+      - BILLING_SERVICE_ENDPOINT=http://localhost:3000/api
+      - RECURLY_PUBLIC_KEY=sc-qddYBWkJNyoy3Ug6BD0ztt
+      - CHECKOUT_QUIT_REDIRECT_URL=http://localhost:3000/plans
+      - CHECKOUT_SUCCESS_REDIRECT_URL=https://mangomap.com
+      - UPDATE_CARD_SUCCESS_REDIRECT_URL=http://localhost:3000/login
+      - UPDATE_CARD_QUIT_REDIRECT_URL=http://localhost:3000/login

@@ -1,0 +1,102 @@
+{
+  "name": "account-management-system",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "docker-compose up -d",
+    "start:test": "docker-compose -f docker-compose.yml -f docker-compose.test.yml up -d",
+    "start:dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d",
+    "stop": "docker-compose down",
+    "reset": "docker-compose down --volume && docker volume prune",
+    "test": "docker-compose exec -T app npx cypress run --headless",
+    "test:dev": "cypress open",
+    "build": "docker build -t mangomap/account-management-system .",
+    "next:build": "next build",
+    "next:start": "next start",
+    "next:dev": "next dev"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/data-grid": "^4.0.0-alpha.10",
+    "@material-ui/icons": "^4.2.1",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@recurly/react-recurly": "^1.2.3",
+    "axios": "^0.21.1",
+    "bootstrap": "3",
+    "cookies": "^0.8.0",
+    "json-loader": "^0.5.7",
+    "jsonwebtoken": "^8.5.1",
+    "lodash.at": "^4.6.0",
+    "material-ui-theme": "^0.1.0",
+    "next": "^9.4.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "uuid": "^8.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^7.29.4",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.3",
+    "babel-jest": "^26.6.3",
+    "chance": "^1.1.7",
+    "cypress": "^6.3.0",
+    "cz-conventional-changelog": "^3.2.0",
+    "enzyme": "^3.11.0",
+    "enzyme-to-json": "^3.3.5",
+    "jest": "^26.6.3",
+    "jest-dom": "^4.0.0",
+    "jest-fetch-mock": "^3.0.3",
+    "next-page-tester": "^0.18.0",
+    "npm-run-all": "^4.1.5",
+    "waait": "^1.0.5"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/.next/",
+      "<rootDir>/node_modules/"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupTests.js"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md"
+          ]
+        }
+      ]
+    ],
+    "verifyConditions": {
+      "path": "semantic-release-docker",
+      "registryUrl": "docker.io"
+    },
+    "publish": {
+      "path": "semantic-release-docker",
+      "name": "mangomap/account-management-system"
+    }
+  }
+}

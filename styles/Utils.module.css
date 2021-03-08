@@ -1,0 +1,38 @@
+.capitalize {
+  text-transform: capitalize;
+}
+.noPadding {
+	padding: 0 !important;
+}
+
+.noMargin {
+	margin: 0 !important;
+}
+
+.paddingMedium {
+	padding: 10px;
+}
+
+.paddingTopMedium{
+	padding-top: 10px;
+}
+
+.paddingTopLarge{
+	padding-top: 15px;
+}
+
+.paddingTopXLarge{
+	padding-top: 20px;
+}
+
+.paddingBottomMedium{
+	padding-bottom: 10px;
+}
+
+.paddingBottomLarge{
+	padding-bottom: 15px;
+}
+
+.marginTopMedium{
+	margin-top: 10px;
+}

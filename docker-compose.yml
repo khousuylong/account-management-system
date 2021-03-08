@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  app:
+    container_name: app
+    image: mangomap/account-management-system
+    ports:
+      - '3004:3004'
+      - '3000:3000'

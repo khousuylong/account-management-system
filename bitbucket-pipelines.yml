@@ -1,0 +1,38 @@
+image: 
+  name: mangomap/base-image
+  username: $DOCKER_HUB_USER
+  password: $DOCKER_HUB_PASSWORD
+pipelines:
+  pull-requests:
+    '*/*':
+      - step:
+          name: Run tests
+          services:
+            - docker
+          script:
+            - npm install
+            - npm run build
+            - npm run start:test
+            - sleep 30
+            - npm test
+  branches:
+    master:
+      - step:
+          name: Build new image and test
+          script:
+            - npm install
+            - npm run build
+            - npm run start:test
+            - sleep 30
+            - npm test
+            - git remote set-url origin ${BITBUCKET_GIT_SSH_ORIGIN}
+            - echo $BITBUCKET_GIT_SSH_ORIGIN
+            - git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+            - git remote update
+            - git fetch --all
+            - npm install @semantic-release/changelog
+            - npm install @semantic-release/git
+            - npm install semantic-release-docker
+            - npx semantic-release@16 --no-ci -b master
+          services:
+            - docker
