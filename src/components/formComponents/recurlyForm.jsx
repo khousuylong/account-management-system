@@ -163,7 +163,7 @@ export default function RecurlyForm(props) {
 					</div>
 					<div className={utils.paddingTopMedium}>
 						<CountrySelect required={true} helperText={helperText.country} error={helperText.countryError} selected={companyInfo.country} onChange={handleCountry} />
-						<TextField required fullWidth={true} type="hidden" value={companyInfo.country} inputProps={{
+						<TextField style={{display: 'none'}} required fullWidth={true} type="hidden" value={companyInfo.country} inputProps={{
 							'data-recurly':"country" 
 						}}  />
 					</div>
